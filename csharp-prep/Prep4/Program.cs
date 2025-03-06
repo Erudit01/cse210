@@ -57,5 +57,26 @@ class Program
         }
 
         Console.WriteLine($"The largest number is: {max}");
+
+        int min = numbers[0];
+
+        foreach (int number in numbers)
+        {
+            if (number < min && 0 < number)
+            {
+                min = number;
+            }
+        }
+
+        Console.WriteLine($"The smallest positive number is: {min}");
+
+        numbers.Sort();
+
+        Console.WriteLine($"The sorted list is: ");
+
+        foreach (int number in numbers)
+        {
+            Console.WriteLine(number);
+        }
     }
 }
