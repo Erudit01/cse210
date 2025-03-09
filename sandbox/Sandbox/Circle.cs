@@ -9,7 +9,7 @@ class Circle
 
     public double GetArea()
     {
-        double area = Math.PI * radius *radius;
+        double area = Math.PI * radius * radius;
         return area;
     }
 
