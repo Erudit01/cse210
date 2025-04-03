@@ -1,6 +1,4 @@
-using System;
-
-public class Resume
+class Resume
 {
     public string _name;
 

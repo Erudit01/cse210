@@ -1,50 +1,43 @@
-// A code template for the category of things known as Journal. The
-// responsibility of a Journal is to.
-using Microsoft.VisualBasic;
-
+// A code template for the category of things known as Journal. The responsibility of a Journal is to manage a collection of entries, allowing users to add, display, save, and load journal
+// entries.
 public class Journal
 {
     // The C# convention is to start member variables with an underscore _
-    private List<Entry> entries = new List<Entry>();
+    private List<Entry> _entries = new List<Entry>();
 
-    // A special method, called a constructor that is invoked using the  
-    // new keyword followed by the class name and parentheses.
+    // A special method, called a constructor that is invoked using the new keyword followed by the class name and parentheses.
     public Journal()
     {
     }
 
-    // A method that displays the person's full name as used in eastern 
-    // countries or <family name, given name>.
+    // A method that adds a new entry to the journal with the given prompt and response.
     public void AddEntry(string prompt, string response)
     {
         string date = DateTime.Now.ToString("yyyy-MM-dd");
         Entry entry = new Entry(date, prompt, response);
-        entries.Add(entry);
+        _entries.Add(entry);
     }
 
-    // A method that displays the person's full name as used in western 
-    // countries or <given name family name>.
+    // A method that saves all journal entries to a specified file.
     public void SaveToFile(string fileName)
     {
         using (StreamWriter writer = new StreamWriter(fileName, false))
         {
-            foreach (Entry entry in entries)
+            foreach (Entry entry in _entries)
                 writer.WriteLine(entry.ToText());
         }
     }
 
-    // A method that displays the person's full name as used in western 
-    // countries or <given name family name>.
+    // A method that displays all journal entries to the console.
     public void DisplayEntries()
     {
-        foreach (var entry in entries)
+        foreach (var entry in _entries)
         {
             Console.WriteLine(entry);
         }
     }
 
-    // A method that displays the person's full name as used in western 
-    // countries or <given name family name>.
+    // A method that reads journal entries from a specified file and adds them to the journal.
     public void ReadFromFile(string fileName)
     {
         string[] lines = System.IO.File.ReadAllLines(fileName);
@@ -55,7 +48,7 @@ public class Journal
             string prompt = parts[1];
             string response = parts[2];
             Entry entry = new Entry(date, prompt, response);
-            entries.Add(entry);
+            _entries.Add(entry);
         }
     }
 }

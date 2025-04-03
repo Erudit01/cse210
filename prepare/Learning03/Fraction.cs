@@ -26,14 +26,14 @@ public class Fraction
 
     public string GetFractionString()
     {
-        // Notice that this is not stored as a member variable. It's just a temporary, local variable that'll be recomputed each time this is called.
+        // Notice that this is not stored as a member variable. This is just a temporary, local variable that will be recomputed each time this is called.
         string text = $"{_top}/{_bottom}";
         return text;
     }
 
     public double GetDecimalValue()
     {
-        // Notice that this isn't stored as a member variable. It'll be recomputed each time this is called.
-        return (double)_top / _bottom;
+        // Notice that this is not stored as a member variable. This will be recomputed each time this is called.
+        return (double)_top / (double)_bottom;
     }
 }
