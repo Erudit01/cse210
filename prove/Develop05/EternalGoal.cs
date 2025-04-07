@@ -8,9 +8,7 @@ public class EternalGoal : Goal
     {
         return _points;
     }
-
     public EternalGoal(string name, string desc, int points) : base(name, desc, points)
     {
-
     }
 }

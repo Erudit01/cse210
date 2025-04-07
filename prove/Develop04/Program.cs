@@ -19,7 +19,7 @@ class Program
                 Console.WriteLine("How long in seconds do you want the activty to last?");
                 int length = int.Parse(Console.ReadLine());
 
-                Breathing activity = new Breathing(length);
+                BreathingActivity activity = new BreathingActivity(length);
                 activity.ActivityStart();
                 activity.Breathe();
                 activity.ActivityEnd();
@@ -29,7 +29,7 @@ class Program
                 Console.WriteLine("How long in seconds do you want the activty to last?");
                 int length = int.Parse(Console.ReadLine());
 
-                Reflection activity = new Reflection(length);
+                ReflectionActivity activity = new ReflectionActivity(length);
                 activity.ActivityStart();
                 activity.PromptUser();
                 activity.Reflection();
@@ -40,11 +40,10 @@ class Program
                 Console.WriteLine("How long in seconds do you want the activty to last?");
                 int length = int.Parse(Console.ReadLine());
 
-                Listening activity = new Listening(length);
+                ListeningActivity activity = new ListeningActivity(length);
                 activity.ActivityStart();
                 activity.Listen();
                 activity.ActivityEnd();
-
             }
             else if (choice == 4)
             {

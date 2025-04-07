@@ -1,4 +1,4 @@
-class Reflection : Activity
+class ReflectionActivity : Activity
 {
 
     Random rand = new Random();
@@ -22,9 +22,6 @@ class Reflection : Activity
             "How did you step outside of your comfort zone?",
             "What is one action you can take tomorrow to grow?"
         };
-
-
-
     List<string> churchPrompts = new List<string>
         {
             "How did you see the Lord's hand in your life today?",
@@ -43,26 +40,25 @@ class Reflection : Activity
             "How can you be a better disciple of Jesus Christ tomorrow?",
             "What blessing have you noticed from keeping your covenants?"
         };
-    public Reflection()
+    public ReflectionActivity()
     {
         _name = "Reflection Activity";
         _activityLength = 30;
         _description = "Durring this activity you will be given the chance to refect on things that have happened throughout the day based on the prompts given";
     }
-    public Reflection(int length)
+    public ReflectionActivity(int length)
     {
         _name = "Reflection Activity";
         _activityLength = length;
         _description = "Durring this activity you will be given the chance to refect on things that have happened throughout the day based on the prompts given";
     }
-    public Reflection(int length, int delay)
+    public ReflectionActivity(int length, int delay)
     {
         _name = "Reflection Activity";
         _activityLength = length;
         _delay = delay;
         _description = "Durring this activity you will be given the chance to refect on things that have happened throughout the day based on the prompts given";
     }
-
     public void PromptUser()
     {
         int pick = rand.Next(1, 3);
@@ -104,7 +100,6 @@ class Reflection : Activity
     {
         DateTime start = DateTime.Now;
         DateTime future = start.AddSeconds(_activityLength);
-
         List<string> ReflectionQs = new List<string>
         {
             "How did this experience impact your perspective on life or your goals?",
@@ -141,7 +136,5 @@ class Reflection : Activity
                 Console.WriteLine("You have finished all the questions");
             }
         }
-
-
     }
 }

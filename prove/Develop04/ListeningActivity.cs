@@ -1,4 +1,4 @@
-public class Listening : Activity
+public class ListeningActivity : Activity
 {
     Random rand = new Random();
     List<string> listenPrompts = new List<string>
@@ -29,19 +29,18 @@ public class Listening : Activity
             "List a few ways you listened to your body's needs (food, rest, movement, etc.).",
             "List a few things you can do to take better care of yourself tomorrow."
         };
-    public Listening()
+    public ListeningActivity()
     {
         _name = "Listening Activity";
         _description = "Durring the listening activty you will be asked to write a few different responses to a prompt.";
         _activityLength = 30;
     }
-    public Listening(int length)
+    public ListeningActivity(int length)
     {
         _name = "Listening Activity";
         _description = "Durring the listening activty you will be asked to write a few different responses to a prompt.";
         _activityLength = length;
     }
-
     public void Listen()
     {
         DateTime start = DateTime.Now;

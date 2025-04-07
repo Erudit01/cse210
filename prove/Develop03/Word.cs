@@ -11,11 +11,13 @@ class Word
         _word = word;
         _hidden = false;
     }
+
     // A method that hides the word by setting the _hidden variable to true.
         public void Hide()
     {
         _hidden = true;
     }
+    
     // A method that returns the rendered text of the word. If the word is hidden, it returns underscores (_) matching the length of the word.
         public string GetRenderedText()
     {

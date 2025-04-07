@@ -6,21 +6,24 @@ class Reference
     private int _chapter;
     private int _verse;
     private int? _endVerse;
-        // A special method, called a constructor that is invoked using the new keyword followed by the class name and parentheses.
-        public Reference(string book, int chapter, int verse)
+
+    // A special method, called a constructor that is invoked using the new keyword followed by the class name and parentheses.
+    public Reference(string book, int chapter, int verse)
     {
         _book = book;
         _chapter = chapter;
         _verse = verse;
     }
+    
     // A special method, called a constructor that is invoked using the new keyword followed by the class name and parentheses.
-        public Reference(string book, int chapter, int verse, int endVerse)
+    public Reference(string book, int chapter, int verse, int endVerse)
     {
         _book = book;
         _chapter = chapter;
         _verse = verse;
         _endVerse = endVerse;
     }
+
     // A method that returns the formatted reference as a string. If there is no ending verse, it returns the format "Book Chapter:Verse".
     public string GetReference()
     {

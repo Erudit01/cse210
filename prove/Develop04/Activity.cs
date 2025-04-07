@@ -4,9 +4,6 @@ public class Activity
     protected int _activityLength;
     protected int _delay;
     protected string _description;
-
-
-
     public Activity()
     {
         _name = "Unknown Activity";
@@ -14,7 +11,6 @@ public class Activity
         _delay = 0;
         _description = "No Description";
     }
-
     public void ActivityStart()
     {
         Console.WriteLine($"Welcome to the {_name}");
@@ -22,37 +18,30 @@ public class Activity
         Console.WriteLine(_description);
         Thread.Sleep(5000);
     }
-
     public void ActivityEnd()
     {
         Console.WriteLine($"You have comepleted {_activityLength} seconds of the {_name}");
     }
-
     public void DisplayDescription()
     {
         Console.WriteLine(_description);
     }
-
     public int GetLength()
     {
         return _activityLength;
     }
-
     public int GetDelay()
     {
         return _delay;
     }
-
     public string GetName()
     {
         return _name;
     }
-
     public string GetDescription()
     {
         return _description;
     }
-
     public void SetName(string name)
     {
         _name = name;

@@ -1,4 +1,4 @@
-// A code template for the category of things known as Scripture. The responsibility of a Scritpure is to
+// A code template for the category of things known as Scripture. The responsibility of a Scripture is to
 class Scripture
 {
     // The C# convention is to start member variables with an underscore _
@@ -11,22 +11,30 @@ class Scripture
         _reference = reference;
         _words = text.Split(' ').Select(w => new Word(w)).ToList();
     }
-    // A method that
+
+    // A method that hides a specified number of words randomly
     public void HideWords(Random random, int count)
     {
-        visibleWords = _words.Where(w => !w.IsHidden).ToList();
-        
-        for (int i = 0; i < 3; i++)
+        var visibleWords = _words.Where(w => !w.IsHidden).ToList();
+
+        // Ensure we don't try to hide more words than are visible
+        count = Math.Min(count, visibleWords.Count);
+
+        for (int i = 0; i < count; i++)
         {
-            visibleWords[random.Next(visibleWords.Count)].Hide();
+            var wordToHide = visibleWords[random.Next(visibleWords.Count)];
+            wordToHide.Hide();
+            visibleWords.Remove(wordToHide); // Remove the word from the list to avoid hiding it again
         }
     }
-    // A method that
+
+    // A method that checks if all words are hidden
     public bool IsCompletelyHidden()
     {
-        return _words.All((w) => w.IsHidden);
+        return _words.All(w => w.IsHidden);
     }
-    // A method that
+    
+    // A method that renders the scripture text
     public string GetRenderedText()
     {
         return $"{_reference} {string.Join(" ", _words)}";

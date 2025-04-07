@@ -1,14 +1,14 @@
-public class Breathing : Activity
+public class BreathingActivity : Activity
 {
 
-    public Breathing()
+    public BreathingActivity()
     {
         _name = "Breathing Activity";
         _delay = 5;
         _activityLength = 30;
         _description = "Durring the breathing activity you will do a series of deep breathes. You will be asked to breathe in until the breathe out phase starts. This process repeats till the activity duration is reached.";
     }
-    public Breathing(int length)
+    public BreathingActivity(int length)
     {
         _name = "Breathing Activity";
         _activityLength = length;
@@ -35,8 +35,7 @@ public class Breathing : Activity
             _delay = 9;
         }
     }
-
-    public Breathing(int length, int delay)
+    public BreathingActivity(int length, int delay)
     {
         _name = "Breathing Activity";
         _delay = delay;

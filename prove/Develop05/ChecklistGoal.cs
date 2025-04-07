@@ -52,21 +52,18 @@ public class ChecklistGoal : Goal
     {
         return ["ChecklistGoal:", _goalName + ",", _goalDescription + ",", _points.ToString() + ",", _done.ToString() + ",", _numberToComplete.ToString() + ",", _timesCompleted.ToString() + ",", _bonusPoints.ToString()];
     }
-
     public ChecklistGoal(string name, string desc, int points) : base(name, desc, points)
     {
         _timesCompleted = 0;
         _numberToComplete = 1;
         _bonusPoints = 0;
     }
-
     public ChecklistGoal(string name, string desc, int points, int goalNum, int bonus) : base(name, desc, points)
     {
         _timesCompleted = 0;
         _numberToComplete = goalNum;
         _bonusPoints = bonus;
     }
-
     public ChecklistGoal(string name, string desc, int points, bool done, int goalNum, int completed, int bonus) : base(name, desc, points, done)
     {
         _timesCompleted = completed;

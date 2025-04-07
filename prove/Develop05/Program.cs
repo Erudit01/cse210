@@ -102,7 +102,6 @@ class Program
                         }
                         writer.Write("\n");
                     }
-
                 }
                 Console.WriteLine("File Saved!");
                 Thread.Sleep(1000);
