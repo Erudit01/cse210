@@ -1,54 +1,74 @@
-// A code template for the category of things known as Journal. The responsibility of a Journal is to manage a collection of entries, allowing users to add, display, save, and load journal
-// entries.
 public class Journal
 {
-    // The C# convention is to start member variables with an underscore _
-    private List<Entry> _entries = new List<Entry>();
-
-    // A special method, called a constructor that is invoked using the new keyword followed by the class name and parentheses.
-    public Journal()
+    int test = 0;
+    List<Entry> entries = new List<Entry>();
+    public void AddEntry(string date, string prompt, string response)
     {
+        Entry new_entry = new Entry();
+        new_entry._date = date;
+        new_entry._prompt = prompt;
+        new_entry._response = response;
+        entries.Add(new_entry);
     }
-
-    // A method that adds a new entry to the journal with the given prompt and response.
-    public void AddEntry(string prompt, string response)
+    public void DisplayJournal()
     {
-        string date = DateTime.Now.ToString("yyyy-MM-dd");
-        Entry entry = new Entry(date, prompt, response);
-        _entries.Add(entry);
-    }
-
-    // A method that saves all journal entries to a specified file.
-    public void SaveToFile(string fileName)
-    {
-        using (StreamWriter writer = new StreamWriter(fileName, false))
+        foreach (Entry entry in entries)
         {
-            foreach (Entry entry in _entries)
-                writer.WriteLine(entry.ToText());
+            string formatedEntry = entry.FormatToString();
+            Console.WriteLine(formatedEntry);
         }
     }
-
-    // A method that displays all journal entries to the console.
-    public void DisplayEntries()
+    public void Load(string filename)
     {
-        foreach (var entry in _entries)
+        using (StreamReader inputFile = new StreamReader(filename))
         {
-            Console.WriteLine(entry);
+            string[] fileEntries = System.IO.File.ReadAllLines(filename);
+            int count = 0;
+            foreach (string entry in fileEntries)
+            {
+                count++;
+                if (count == 1)
+                    continue;
+                string[] entryparts = entry.Split(",");
+                string date = entryparts[0];
+                string prompt = entryparts[1];
+                string response = entryparts[2];
+                AddEntry(date, prompt, response);
+            }
         }
     }
-
-    // A method that reads journal entries from a specified file and adds them to the journal.
-    public void ReadFromFile(string fileName)
+    public void Save(string filename)
     {
-        string[] lines = System.IO.File.ReadAllLines(fileName);
-        foreach (string line in lines)
+        using (StreamWriter outputFile = new StreamWriter(filename))
         {
-            string[] parts = line.Split('#');
-            string date = parts[0];
-            string prompt = parts[1];
-            string response = parts[2];
-            Entry entry = new Entry(date, prompt, response);
-            _entries.Add(entry);
+            outputFile.WriteLine("DATE", "PROMPT", "RESPONSE");
+            foreach (Entry entry in entries)
+            {
+                string date = entry._date;
+                string prompt = entry._prompt;
+                string response = entry._response;
+                string format = $"{date},{prompt},{response}";
+                outputFile.WriteLine(format);
+            }
+        }
+    }
+    public void EditEntry()
+    {
+        Console.WriteLine("Enter the date for the entry you want to change.");
+        string date = Console.ReadLine();
+        foreach (Entry entry in entries)
+        {
+            if (entry._date == date)
+            {
+                Console.WriteLine(entry.FormatToString());
+                Console.WriteLine();
+                Console.WriteLine("Please enter the changed response to your prompt.");
+                entry._response = Console.ReadLine();
+            }
+            else
+            {
+                Console.WriteLine("That date could not be found in the journal.");
+            }
         }
     }
 }

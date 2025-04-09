@@ -1,48 +1,58 @@
 using System;
+
 class Program
 {
+    int test = 0;
     static void Main(string[] args)
     {
-        Journal myJournal = new Journal();
-        PromptGenerator aPrompt = new PromptGenerator();
-        Console.WriteLine("Welcome to the Journal Program!");
-        while (true)
+        Menu _menu = new Menu();
+        Prompt _prompt = new Prompt();
+        Journal _journal = new Journal();
+        _prompt.CreatePromptList();
+        string Choice = "-1";
+        do
         {
-            Console.Write("Please select one of the following choices:\n1. Write\n2. Display\n3. Load\n4. Save\n5. Exit\nWhat would you like to do? ");
-            
-            string choice = Console.ReadLine();
-            if (choice == "1")
+            _menu.Display();
+            Choice = Console.ReadLine();
+            if (Choice == "1")
             {
-                string prompt = aPrompt.GetRandomPrompt();
+                DateTime date = DateTime.Now;
+                string dateText = date.ToShortDateString();
+                string prompt = _prompt.GetRandPrompt();
                 Console.WriteLine(prompt);
-                Console.Write("> ");
                 string response = Console.ReadLine();
-                myJournal.AddEntry(prompt, response);
+                _journal.AddEntry(dateText, prompt, response);
             }
-            else if (choice == "2")
+            else if (Choice == "2")
             {
-                myJournal.DisplayEntries();
+                Console.WriteLine("Please enter the name of the file you would like to load from? ");
+                string file = Console.ReadLine();
+                _journal.Load(file);
+                Console.WriteLine("File Loaded");
             }
-            else if (choice == "3")
+            else if (Choice == "3")
             {
-                Console.WriteLine("What's the filename?");
-                string fileName = Console.ReadLine();
-                myJournal.ReadFromFile(fileName);
+                Console.WriteLine("What is the name of the file that you want to save to? ");
+                string file = Console.ReadLine();
+                _journal.Save(file);
+                Console.WriteLine("File Saved");
             }
-            else if (choice == "4")
+            else if (Choice == "4")
             {
-                Console.WriteLine("What's the filename?");
-                string fileName = Console.ReadLine();
-                myJournal.SaveToFile(fileName);
+                _journal.DisplayJournal();
             }
-            else if (choice == "5")
+            else if (Choice == "5")
             {
-                break;
+                _journal.EditEntry();
+            }
+            else if (Choice == "6")
+            {
+                Console.WriteLine("You have successfuly quited the Program");
             }
             else
             {
-                Console.WriteLine("Invalid choice. Try again.");
+                Console.WriteLine("Please enter a valid input.");
             }
-        }
+        } while (Choice != "6");
     }
 }

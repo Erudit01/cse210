@@ -11,14 +11,11 @@ class Program
             Console.WriteLine("2. Reflection Activity");
             Console.WriteLine("3. Listening Activity");
             Console.WriteLine("4. Quit");
-
             choice = int.Parse(Console.ReadLine());
-
             if (choice == 1)
             {
                 Console.WriteLine("How long in seconds do you want the activty to last?");
                 int length = int.Parse(Console.ReadLine());
-
                 BreathingActivity activity = new BreathingActivity(length);
                 activity.ActivityStart();
                 activity.Breathe();
@@ -28,7 +25,6 @@ class Program
             {
                 Console.WriteLine("How long in seconds do you want the activty to last?");
                 int length = int.Parse(Console.ReadLine());
-
                 ReflectionActivity activity = new ReflectionActivity(length);
                 activity.ActivityStart();
                 activity.PromptUser();
@@ -39,7 +35,6 @@ class Program
             {
                 Console.WriteLine("How long in seconds do you want the activty to last?");
                 int length = int.Parse(Console.ReadLine());
-
                 ListeningActivity activity = new ListeningActivity(length);
                 activity.ActivityStart();
                 activity.Listen();

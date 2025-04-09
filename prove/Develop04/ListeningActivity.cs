@@ -46,14 +46,11 @@ public class ListeningActivity : Activity
         DateTime start = DateTime.Now;
         DateTime end = start.AddSeconds(_activityLength);
         DateTime current = DateTime.Now;
-
         Console.Clear();
         int Index = rand.Next(0, listenPrompts.Count());
-
         Console.WriteLine("Consider the following prompt");
         Console.WriteLine($"-- {listenPrompts[Index]} --");
         Console.WriteLine("Write as many responses as you can");
-
         while (end > current)
         {
             if (Console.KeyAvailable)
@@ -62,7 +59,6 @@ public class ListeningActivity : Activity
             }
             current = DateTime.Now;
         }
-
         Console.WriteLine("Time is up!");
         Thread.Sleep(2000);
         Console.Clear();

@@ -1,42 +1,115 @@
-// A code template for the category of things known as Scripture. The responsibility of a Scripture is to
 class Scripture
 {
-    // The C# convention is to start member variables with an underscore _
+    private List<Verse> _verses = new List<Verse>();
     private Reference _reference;
-    private List<Word> _words;
-
-    // A special method, called a constructor that is invoked using the new keyword followed by the class name and parentheses.
-    public Scripture(Reference reference, string text)
+    public void Display()
     {
-        _reference = reference;
-        _words = text.Split(' ').Select(w => new Word(w)).ToList();
-    }
-
-    // A method that hides a specified number of words randomly
-    public void HideWords(Random random, int count)
-    {
-        var visibleWords = _words.Where(w => !w.IsHidden).ToList();
-
-        // Ensure we don't try to hide more words than are visible
-        count = Math.Min(count, visibleWords.Count);
-
-        for (int i = 0; i < count; i++)
+        _reference.Display();
+        foreach (Verse verse in _verses)
         {
-            var wordToHide = visibleWords[random.Next(visibleWords.Count)];
-            wordToHide.Hide();
-            visibleWords.Remove(wordToHide); // Remove the word from the list to avoid hiding it again
+            verse.Display();
         }
     }
-
-    // A method that checks if all words are hidden
-    public bool IsCompletelyHidden()
+    public bool HideWord()
     {
-        return _words.All(w => w.IsHidden);
+        int numOfVerses = _verses.Count;
+        int hiddenVerses = 0;
+        foreach (Verse verse in _verses)
+        {
+            bool finished = verse.HideVerseParts();
+            if (finished == true)
+            {
+                hiddenVerses++;
+            }
+        }
+        if (hiddenVerses == numOfVerses)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
-    
-    // A method that renders the scripture text
-    public string GetRenderedText()
+    public void SetReferance(string reference)
     {
-        return $"{_reference} {string.Join(" ", _words)}";
+        string[] unparsedReference = reference.Split(" ");
+        string book = unparsedReference[0];
+        string chapterVerseRef = unparsedReference[1];
+        string[] unparsedChapterVerse = chapterVerseRef.Split(":");
+        string chapter = unparsedChapterVerse[0];
+        string verseRef = unparsedChapterVerse[1];
+        _reference = new Reference(book, chapter, verseRef);
+    }
+    public void SetVerses(string verses)
+    {
+        string[] spiltVerses = verses.Split(".");
+        foreach (string verse in spiltVerses)
+        {
+            List<string> wholeVerse = new List<string>(verse.Split(" "));
+            string verseNum = wholeVerse[0];
+            wholeVerse.RemoveAt(0);
+            string verseText = string.Join(" ", wholeVerse);
+            verseText += ".";
+            Verse newVerse = new Verse(verseNum, verseText);
+            _verses.Add(newVerse);
+        }
+    }
+    public void SetVerses(List<Verse> verses)
+    {
+        foreach (Verse verse in verses)
+        {
+            _verses.Add(verse);
+        }
+    }
+    public List<Verse> GetVerses()
+    {
+        return _verses;
+    }
+    public Reference GetReference()
+    {
+        return _reference;
+    }
+    public Scripture()
+    {
+        _reference = new Reference();
+        _verses = new List<Verse>();
+    }
+    public Scripture(string reference, string verses)
+    {
+        string[] unparsedReference = reference.Split(" ");
+        string book = unparsedReference[0];
+        string chapterVerseRef = unparsedReference[1];
+        string[] unparsedChapterVerse = chapterVerseRef.Split(":");
+        string chapter = unparsedChapterVerse[0];
+        string verseRef = unparsedChapterVerse[1];
+        _reference = new Reference(book, chapter, verseRef);
+        string[] spiltVerses = verses.Split(".");
+        foreach (string verse in spiltVerses)
+        {
+            if (string.IsNullOrWhiteSpace(verse)) continue;
+            List<string> wholeVerse = new List<string>(verse.Split(" "));
+            string verseNum = wholeVerse[0];
+            wholeVerse.RemoveAt(0);
+            string verseText = string.Join(" ", wholeVerse);
+            verseText += ".";
+            Verse newVerse = new Verse(verseNum, verseText);
+            _verses.Add(newVerse);
+        }
+    }
+    public Scripture(Reference reference, string verses)
+    {
+        _reference = reference;
+        foreach (string verse in verses.Split("."))
+        {
+            if (string.IsNullOrWhiteSpace(verse)) continue;
+            List<string> wholeVerse = new List<string>(verse.Split(" "));
+            string verseNum = wholeVerse[0];
+            wholeVerse.RemoveAt(0);
+            string verseText = string.Join(" ", wholeVerse);
+            verseText += ".";
+            Verse newVerse = new Verse(verseNum, verseText);
+            _verses.Add(newVerse);
+        }
     }
 }

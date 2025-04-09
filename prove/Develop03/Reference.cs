@@ -1,39 +1,38 @@
-// A code template for the category of things known as Reference. The responsibility of a Reference is to represent a scripture reference, including the book, chapter, and verse(s).
 class Reference
 {
-    // The C# convention is to start member variables with an underscore _
     private string _book;
-    private int _chapter;
-    private int _verse;
-    private int? _endVerse;
-
-    // A special method, called a constructor that is invoked using the new keyword followed by the class name and parentheses.
-    public Reference(string book, int chapter, int verse)
+    private string _chapterNumber;
+    private string _verseNumbers;
+    public void Display()
+    {
+        Console.WriteLine($"{_book} {_chapterNumber}:{_verseNumbers}");
+    }
+    public string FormatSave()
+    {
+        return $"{_book} {_chapterNumber}:{_verseNumbers}";
+    }
+    public void changeBook(string bookName)
+    {
+        _book = bookName;
+    }
+    public void changeChapNum(string chapNum)
+    {
+        _chapterNumber = chapNum;
+    }
+    public void changeVerseNum(string verseNums)
+    {
+        _verseNumbers = verseNums;
+    }
+    public Reference()
+    {
+        _book = "none";
+        _chapterNumber = " ";
+        _verseNumbers = " ";
+    }
+    public Reference(string book, string chapNum, string verseNums)
     {
         _book = book;
-        _chapter = chapter;
-        _verse = verse;
-    }
-    
-    // A special method, called a constructor that is invoked using the new keyword followed by the class name and parentheses.
-    public Reference(string book, int chapter, int verse, int endVerse)
-    {
-        _book = book;
-        _chapter = chapter;
-        _verse = verse;
-        _endVerse = endVerse;
-    }
-
-    // A method that returns the formatted reference as a string. If there is no ending verse, it returns the format "Book Chapter:Verse".
-    public string GetReference()
-    {
-        if (_endVerse == null)
-        {
-            return $"{_book} {_chapter}:{_verse}";
-        }
-        else
-        {
-            return $"{_book} {_chapter}:{_verse}-{_endVerse}";
-        }
+        _chapterNumber = chapNum;
+        _verseNumbers = verseNums;
     }
 }

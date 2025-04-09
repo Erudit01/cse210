@@ -1,6 +1,5 @@
 class ReflectionActivity : Activity
 {
-
     Random rand = new Random();
     List<int> indexesChosenGen = new List<int>();
     List<int> indexesChosenChur = new List<int>();
@@ -64,30 +63,24 @@ class ReflectionActivity : Activity
         int pick = rand.Next(1, 3);
         int Index = rand.Next(0, generalPrompts.Count());
         bool enter = false;
-
         Console.WriteLine("Consider the following prompt:");
         if (pick == 1 && (!indexesChosenGen.Contains(Index)))
         {
             Console.WriteLine($"-- {generalPrompts[Index]} --");
-
         }
         else if (pick == 2 && (!indexesChosenChur.Contains(Index)))
         {
             Console.WriteLine(churchPrompts[Index]);
         }
-
         Console.WriteLine();
         Console.WriteLine("Press enter when you have something in mind.");
-
         Console.Write("-");
         while (!enter)
         {
-
             Thread.Sleep(325);
             Console.Write("\r" + "~");
             Thread.Sleep(325);
             Console.Write("\r" + "-");
-
             if (Console.KeyAvailable)
             {
                 Console.Write("\r");

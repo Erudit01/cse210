@@ -7,7 +7,6 @@ class Program
         List<Goal> goals = new List<Goal>();
         int choice = 0;
         int totpoints = 0;
-
         do
         {
             Console.WriteLine($"Total Points: {totpoints}");
@@ -22,20 +21,16 @@ class Program
             Console.WriteLine("6. List Goals");
             Console.WriteLine("7. Record Goal Progress");
             Console.WriteLine("8. Quit Program");
-
             choice = int.Parse(Console.ReadLine());
-
             if (choice == 1)
             {
                 Console.Clear();
                 Console.WriteLine("Please enter the name of the file you want to load: ");
                 string filename = Console.ReadLine();
-
                 using (StreamReader reader = new StreamReader(filename))
                 {
                     string[] lines = reader.ReadToEnd().Split("\n");
                     totpoints = int.Parse(lines[0]);
-
                     foreach (string goal in lines)
                     {
                         if (goal != lines[0] && !string.IsNullOrWhiteSpace(goal))
@@ -90,7 +85,6 @@ class Program
                 Console.Clear();
                 Console.WriteLine("Please enter the name of the file you want to save to:");
                 string filename = Console.ReadLine();
-
                 using (StreamWriter writer = new StreamWriter(filename))
                 {
                     writer.WriteLine(totpoints);

@@ -1,27 +1,31 @@
-// A code template for the category of things known as PromptGenerator. The responsibility of a PromptGenerator is to generate random prompts for journaling or reflection.
-public class PromptGenerator
+public class Prompt
 {
-    // A special method, called a constructor that is invoked using the new keyword followed by the class name and parentheses.
-    public PromptGenerator()
+    int test = 0;
+    public List<string> _prompts = new List<string>();
+    public void CreatePromptList()
     {
+        _prompts.Add("Who was the most interesting person I interacted with today?");
+        _prompts.Add("What was the best part of my day?");
+        _prompts.Add("How did I see the hand of the Lord in my life today?");
+        _prompts.Add("What was the strongest emotion I felt today?");
+        _prompts.Add("If I had one thing I could do over today, what would it be?");
+        _prompts.Add("What progress have I made towards my goals?");
+        _prompts.Add("What is one thing I could have improved on today?");
+        _prompts.Add("How did I share the light of the Savior today?");
     }
-
-    // A method that returns a random prompt from a predefined list of prompts.
-    public string GetRandomPrompt()
+    public string GetRandPrompt()
     {
-        List<string> prompts = new List<string>
+        Random rnd = new Random();
+        int RandomIndex = rnd.Next(0, _prompts.Count());
+
+        string prompt = _prompts[RandomIndex];
+        return prompt;
+    }
+    public void Display()
+    {
+        foreach (string prompt in _prompts)
         {
-            "Who was the most interesting person I interacted with today?",
-            "What was the best part of your day?",
-            "How did I see the hand of the Lord in my life today?",
-            "What challenges did you face today?",
-            "What was the strongest emotion I felt today?",
-            "What is something new you learned?",
-            "Describe a moment that made you smile.",
-            "What are you grateful for today?",
-            "If I had one thing I could do over today, what would it be?"
-        };
-        Random random = new Random();
-        return prompts[random.Next(prompts.Count)];
+            Console.WriteLine(prompt);
+        }
     }
 }
